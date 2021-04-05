@@ -7,6 +7,7 @@ def main():
     while (usr != "quit"):
         usr = input("> ")
         expr = functionModule.parseExpression(usr)
+        result = functionModule.evaluation(expr, 0)
         print(">> ", expr)
     # END OF WHILE
 
