@@ -6,6 +6,7 @@
 
 # imports
 import sys
+import opLibrary
 
 # GLOBAL FUNCTION STACKS
 funcNames = []
@@ -102,29 +103,56 @@ def lookForTerminatingExpr(expStr):
 # looks to execute the expressions defined by the user
 # @return result of expression as a string
 def evaluation(exprList, index):
+    print("EVAL::", exprList)
+    result = 0
+
+    # CHECK FOR RECURSIVE DEPTH
+    # CHECK FOR BOUNDS
+    if (index+1) < len(exprList):
+        if isinstance(exprList[index+1], list):
+            exprList[index+1] = evaluation(exprList[index+1], 0)
+    if (index+2) < len(exprList):
+        if isinstance(exprList[index+2], list):
+            exprList[index+2] = evaluation(exprList[index+2], 0)
+    # END OF CHECK
+    # ARRAY INDEX UPDATED
 
     # check the first expression given is a defined keyword
     if exprList[index] in logicOps:  # logic operations
-        if exprList[index] == ">":
-            print("greater than")
-        if exprList[index] == "<":
-            print("less than")
-        if exprList[index] == "=":
+        if exprList[index] == ">":      # GREATER THAN
+            # print("greater than")
+            # call the greater than function
+            result = opLibrary.gthan(exprList[index+1], exprList[index+2])
+
+        if exprList[index] == "<":      # LESS THAN
+            # print("less than")
+            # call the less than function
+            result = opLibrary.lthan(exprList[index+1], exprList[index+2])
+
+        if exprList[index] == "=":      # EQUAL TO
             print("equal to")
-        if exprList[index] == "!=":
+        if exprList[index] == "!=":     # NOT EQUAL
             print("not equal to")
-        if exprList[index] == "and":
+        if exprList[index] == "and":    # AND
             print("and op")
-        if exprList[index] == "or":
+        if exprList[index] == "or":     # OR
             print("or op")
-        if exprList[index] == "not":
+        if exprList[index] == "not":    # NOT
             print("not op")
 
     elif exprList[index] in arithOps:  # arithmetic operations
-        if exprList[index] == "+":
+        if exprList[index] == "+":      # ADDITION
             print("addition")
-        if exprList[index] == "-":
+            # call the addition function
+            result = opLibrary.add(exprList[index+1], exprList[index+2])
+            print("addition result:", result)
+
+        if exprList[index] == "-":      # SUBTRACTION
             print("subtraction")
+            # call the subtraction function
+            result = opLibrary.sub(exprList[index+1], exprList[index+2])
+            print("subtraction result:", result)
+
         if exprList[index] == "*":
             print("multiplication")
         if exprList[index] == "/":
@@ -156,7 +184,7 @@ def evaluation(exprList, index):
         # user defined variables
         print("user defined variables")
 
-    return 0
+    return result
 
 
 # END OF EVALUATION

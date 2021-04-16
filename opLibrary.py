@@ -8,4 +8,23 @@
 # @built-in-logic: <, >, =, !=, and, or, not
 #
 
-# things
+# LOGIC
+def gthan(a, b):
+    return int(a) > int(b)
+
+def lthan(a, b):
+    return int(a) < int(b)
+
+def equal(a, b):
+    return int(a) == int(b)
+
+def notEqual(a, b):
+    return int(a) != int(b)
+
+
+# ARITHMETIC
+def add(a, b):
+    return int(a) + int(b)
+
+def sub(a, b):
+    return int(a) - int(b)
