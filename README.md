@@ -9,8 +9,8 @@ Arithmetic:
 Logic:
 - [X] greater than, >
 - [X] less than, <
-- [ ] equal to, =
-- [ ] not equal to, !=
+- [X] equal to, =
+- [X] not equal to, !=
 - [ ] and
 - [ ] or
 - [ ] not
