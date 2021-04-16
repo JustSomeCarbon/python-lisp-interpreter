@@ -1,14 +1,14 @@
 This is a simple LISP interpreter written in Python
 
 Arithmetic:
-- [ ] addition, +
-- [ ] subtraction, -
+- [X] addition, +
+- [X] subtraction, -
 - [ ] multiplication, *
 - [ ] division, /
 
 Logic:
-- [ ] greater than, >
-- [ ] less than, <
+- [X] greater than, >
+- [X] less than, <
 - [ ] equal to, =
 - [ ] not equal to, !=
 - [ ] and
