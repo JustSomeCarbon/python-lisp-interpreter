@@ -6,10 +6,10 @@ def main():
 
     while (usr != "quit"):
         usr = input("> ")
-        expr = functionModule.parseExpression(usr)
-        #result = functionModule.evaluation(expr, 0)
-        print(">> ", expr)
-        #print("result", result)
+        expr = functionModule.parseExpression(usr, 0)
+        result = functionModule.evaluation(expr, 0)
+        # print(">> ", expr)
+        print(">> ", result)
     # END OF WHILE
 
     print("> bye")

@@ -22,7 +22,9 @@ builtOps = ["car", "cdr", "cons", "sqrt", "pow", "defun", "!set"]
 
 # Takes in the string expression from the main function.
 # @return array of expressions
-def parseExpression(expStr):
+def parseExpression(expStr, depth):
+    # store the depth
+    retDepth = depth
     # define the empty array for the expression
     expr = []
     #print(expStr)
@@ -39,16 +41,19 @@ def parseExpression(expStr):
     while i < length:
         # recursively call parse for each recurring embedded expression
         if expStr[i] == "(":
+            # add a depth
+            depth += 1
             # push onto stack
             newExpr = expStr[i:]
-            #print(expr)
-            expr.append(parseExpression(newExpr))
+            expr.append(parseExpression(newExpr, depth))  # i
             # update the index for scope
             #print(i)
             i += lookForTerminatingExpr(newExpr) - 1
         elif expStr[i] == ")":
             # return the expression
-            return expr
+            if retDepth == depth:
+                # print("returned:", expr)
+                return expr
         else:
             tmp = ""
             # check if the following is defined as an atom
@@ -103,55 +108,53 @@ def lookForTerminatingExpr(expStr):
 # looks to execute the expressions defined by the user
 # @return result of expression as a string
 def evaluation(exprList, index):
-    print("EVAL::", exprList)
+    # print("EVAL::", exprList)
     result = 0
 
     # CHECK FOR RECURSIVE DEPTH
     # CHECK FOR BOUNDS
-    if (index+1) < len(exprList):
-        if isinstance(exprList[index+1], list):
-            exprList[index+1] = evaluation(exprList[index+1], 0)
-    if (index+2) < len(exprList):
-        if isinstance(exprList[index+2], list):
-            exprList[index+2] = evaluation(exprList[index+2], 0)
+    if (index + 1) < len(exprList):
+        if isinstance(exprList[index + 1], list):
+            exprList[index + 1] = evaluation(exprList[index + 1], 0)
+    if (index + 2) < len(exprList):
+        if isinstance(exprList[index + 2], list):
+            exprList[index + 2] = evaluation(exprList[index + 2], 0)
     # END OF CHECK
     # ARRAY INDEX UPDATED
 
     # check the first expression given is a defined keyword
     if exprList[index] in logicOps:  # logic operations
-        if exprList[index] == ">":      # GREATER THAN
+        if exprList[index] == ">":  # GREATER THAN
             # print("greater than")
             # call the greater than function
-            result = opLibrary.gthan(exprList[index+1], exprList[index+2])
+            result = opLibrary.gthan(exprList[index + 1], exprList[index + 2])
 
-        if exprList[index] == "<":      # LESS THAN
+        if exprList[index] == "<":  # LESS THAN
             # print("less than")
             # call the less than function
-            result = opLibrary.lthan(exprList[index+1], exprList[index+2])
+            result = opLibrary.lthan(exprList[index + 1], exprList[index + 2])
 
-        if exprList[index] == "=":      # EQUAL TO
+        if exprList[index] == "=":  # EQUAL TO
             print("equal to")
-        if exprList[index] == "!=":     # NOT EQUAL
+        if exprList[index] == "!=":  # NOT EQUAL
             print("not equal to")
-        if exprList[index] == "and":    # AND
+        if exprList[index] == "and":  # AND
             print("and op")
-        if exprList[index] == "or":     # OR
+        if exprList[index] == "or":  # OR
             print("or op")
-        if exprList[index] == "not":    # NOT
+        if exprList[index] == "not":  # NOT
             print("not op")
 
     elif exprList[index] in arithOps:  # arithmetic operations
-        if exprList[index] == "+":      # ADDITION
-            print("addition")
+        if exprList[index] == "+":  # ADDITION
+            # print("addition")
             # call the addition function
-            result = opLibrary.add(exprList[index+1], exprList[index+2])
-            print("addition result:", result)
+            result = opLibrary.add(exprList[index + 1], exprList[index + 2])
 
-        if exprList[index] == "-":      # SUBTRACTION
-            print("subtraction")
+        if exprList[index] == "-":  # SUBTRACTION
+            # print("subtraction")
             # call the subtraction function
-            result = opLibrary.sub(exprList[index+1], exprList[index+2])
-            print("subtraction result:", result)
+            result = opLibrary.sub(exprList[index + 1], exprList[index + 2])
 
         if exprList[index] == "*":
             print("multiplication")
