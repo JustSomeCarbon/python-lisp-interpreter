@@ -60,7 +60,7 @@ def parseExpression(expStr, depth):
             if expStr[i] == "'" and expStr[i + 1] == "(":
                 n = lookForTerminatingExpr(expStr[i + 1:])
                 end = i + n + 2
-                print("found an atom. end:", end)
+                # print("found an atom. end:", end)
                 # the following until the space is an atom
                 while i < end and i < length:
                     tmp += expStr[i]
@@ -146,11 +146,21 @@ def evaluation(exprList, index):
                                         exprList[index + 2])
 
         if exprList[index] == "and":  # AND
-            print("and op")
+            # print("and op")
+            # call the AND function
+            result = opLibrary.logicAnd(exprList[index + 1],
+                                        exprList[index + 2])
+
         if exprList[index] == "or":  # OR
-            print("or op")
+            # print("or op")
+            # call the OR function
+            result = opLibrary.logicOr(exprList[index + 1],
+                                       exprList[index + 2])
+
         if exprList[index] == "not":  # NOT
-            print("not op")
+            # print("not op")
+            # call the NOT function
+            result = opLibrary.logicNot(exprList[index + 1])
 
     elif exprList[index] in arithOps:  # arithmetic operations
         if exprList[index] == "+":  # ADDITION
@@ -163,11 +173,11 @@ def evaluation(exprList, index):
             # call the subtraction function
             result = opLibrary.sub(exprList[index + 1], exprList[index + 2])
 
-        if exprList[index] == "*":
+        if exprList[index] == "*":  # MULTIPLICATION
             # print("multiplication")
             # call the multiplication function
             result = opLibrary.mult(exprList[index + 1], exprList[index + 2])
-        if exprList[index] == "/":
+        if exprList[index] == "/":  # DIVISION
             # print("division")
             # call the division function
             result = opLibrary.div(exprList[index + 1], exprList[index + 2])
@@ -180,9 +190,16 @@ def evaluation(exprList, index):
         if exprList[index] == "cons":
             print("function cons")
         if exprList[index] == "sqrt":
-            print("function sqrt")
+            # print("function sqrt")
+            # call the square root function
+            result = opLibrary.exprSqrt(exprList[index + 1])
+
         if exprList[index] == "pow":
-            print("function pow")
+            # print("function pow")
+            # call the power function
+            result = opLibrary.exprPow(exprList[index + 1],
+                                       exprList[index + 2])
+
         if exprList[index] == "defun":
             print("function defun")
         if exprList[index] == "!set":
