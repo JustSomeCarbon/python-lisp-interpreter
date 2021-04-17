@@ -135,9 +135,16 @@ def evaluation(exprList, index):
             result = opLibrary.lthan(exprList[index + 1], exprList[index + 2])
 
         if exprList[index] == "=":  # EQUAL TO
-            print("equal to")
+            # print("equal to")
+            # call the equal to function
+            result = opLibrary.equal(exprList[index + 1], exprList[index + 2])
+
         if exprList[index] == "!=":  # NOT EQUAL
-            print("not equal to")
+            # print("not equal to")
+            # call the not equal to function
+            result = opLibrary.notEqual(exprList[index + 1],
+                                        exprList[index + 2])
+
         if exprList[index] == "and":  # AND
             print("and op")
         if exprList[index] == "or":  # OR
@@ -157,9 +164,13 @@ def evaluation(exprList, index):
             result = opLibrary.sub(exprList[index + 1], exprList[index + 2])
 
         if exprList[index] == "*":
-            print("multiplication")
+            # print("multiplication")
+            # call the multiplication function
+            result = opLibrary.mult(exprList[index + 1], exprList[index + 2])
         if exprList[index] == "/":
-            print("division")
+            # print("division")
+            # call the division function
+            result = opLibrary.div(exprList[index + 1], exprList[index + 2])
 
     elif exprList[index] in builtOps:  # built in functions
         if exprList[index] == "car":
