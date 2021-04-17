@@ -22,4 +22,4 @@ functions:
 - [X] sqrt
 - [X] pow
 - [ ] defun
-- [ ] !set
+- [X] !set
