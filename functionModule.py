@@ -13,6 +13,7 @@ funcNames = []
 funcDefs = []
 # GLOBAL VARIABLE STACK
 varNames = []
+varDefs = []
 
 # GLOBAL OPERATIONS
 logicOps = ["<", ">", "=", "!=", "and", "or", "not"]
@@ -29,9 +30,20 @@ def parseExpression(expStr, depth):
     expr = []
     #print(expStr)
 
+    # check if end
+    if expStr == "(quit)":
+        expr.append("(quit)")
+        return expr
+
     # check character by index
+    # if the string is not an expression, return itself
     if expStr[0] != "(":
-        expr.append("quit")
+        n = 0
+        tmp = ""
+        while n < len(expStr) and expStr[n] != " ":
+            tmp = tmp + expStr[n]
+            n += 1
+        expr.append(tmp)
         return expr
 
     # parse expression
@@ -183,18 +195,18 @@ def evaluation(exprList, index):
             result = opLibrary.div(exprList[index + 1], exprList[index + 2])
 
     elif exprList[index] in builtOps:  # built in functions
-        if exprList[index] == "car":
+        if exprList[index] == "car":  # CAR
             print("function car")
-        if exprList[index] == "cdr":
+        if exprList[index] == "cdr":  # CDR
             print("function cdr")
-        if exprList[index] == "cons":
+        if exprList[index] == "cons":  # CONS
             print("function cons")
-        if exprList[index] == "sqrt":
+        if exprList[index] == "sqrt":  # SQRT
             # print("function sqrt")
             # call the square root function
             result = opLibrary.exprSqrt(exprList[index + 1])
 
-        if exprList[index] == "pow":
+        if exprList[index] == "pow":  # POW
             # print("function pow")
             # call the power function
             result = opLibrary.exprPow(exprList[index + 1],
@@ -202,8 +214,20 @@ def evaluation(exprList, index):
 
         if exprList[index] == "defun":
             print("function defun")
-        if exprList[index] == "!set":
-            print("function !set")
+        if exprList[index] == "!set":  # SET
+            # push result of expression to var names and var defs
+            # return the resulting variable name
+            varDefs.append(exprList[index + 2])
+            varNames.append(exprList[index + 1])
+            result = exprList[index + 1]
+
+        if exprList[index] == "define":  # DOES NOT WORK FOR SOME REASON
+            # push result of expression to var names and var defs
+            # return the resulting variable name
+            print("in define")
+            varDefs.append(exprList[index + 2])
+            varNames.append(exprList[index + 1])
+            result = exprList[index + 1]
 
     # check if the first expression is a user defined function keyword
     if exprList[index] in funcNames:
@@ -213,7 +237,8 @@ def evaluation(exprList, index):
     # check if the first expression is a user defined variable
     if exprList[index] in varNames:
         # user defined variables
-        print("user defined variables")
+        n = varNames.index(exprList[index])
+        result = varDefs[n]
 
     return result
 
