@@ -11,15 +11,15 @@ Logic:
 - [X] less than, <
 - [X] equal to, =
 - [X] not equal to, !=
-- [ ] and
-- [ ] or
-- [ ] not
+- [X] AND
+- [X] OR
+- [X] NOT
 
 functions:
 - [ ] car
 - [ ] cdr
 - [ ] cons
-- [ ] sqrt
-- [ ] pow
+- [X] sqrt
+- [X] pow
 - [ ] defun
 - [ ] !set
