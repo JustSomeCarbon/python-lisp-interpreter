@@ -3,8 +3,8 @@ This is a simple LISP interpreter written in Python
 Arithmetic:
 - [X] addition, +
 - [X] subtraction, -
-- [ ] multiplication, *
-- [ ] division, /
+- [X] multiplication, *
+- [X] division, /
 
 Logic:
 - [X] greater than, >
