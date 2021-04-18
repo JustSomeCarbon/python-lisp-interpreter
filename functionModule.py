@@ -70,19 +70,20 @@ def parseExpression(expStr, depth):
             tmp = ""
             # check if the following is defined as an atom
             if expStr[i] == "'" and expStr[i + 1] == "(":  # IF '(abc...)
+                # i += 1
                 n = lookForTerminatingExpr(expStr[i + 1:])
                 end = i + n + 2
-                # print("found an atom. end:", end)
                 # the following until the space is an atom
                 while i < end and i < length:
                     tmp += expStr[i]
                     i += 1
-                expr.append(tmp)
+                expr.append(tmp[1:])
             elif expStr[i] == "'" and i < length:  # IF 'abc...
-                while expStr[i] != " ":
+                # i += 1
+                while expStr[i] != " " and expStr[i] != ")":
                     tmp += expStr[i]
                     i += 1
-                expr.append(tmp)
+                expr.append(tmp[1:])
             # look to build the expression and push to the array
             elif expStr[i] != " " and i < length:
                 while expStr[i] != " " and expStr[i] != ")" and i < length:
@@ -199,9 +200,15 @@ def evaluation(exprList, index):
 
     elif exprList[index] in builtOps:  # built in functions
         if exprList[index] == "car":  # CAR
-            print("function car")
+            # print("function car")
+            # call the car function
+            result = opLibrary.carFunc(exprList[index + 1])
+
         if exprList[index] == "cdr":  # CDR
-            print("function cdr")
+            # print("function cdr")
+            # call the cdr function
+            result = opLibrary.cdrFunc(exprList[index + 1])
+
         if exprList[index] == "cons":  # CONS
             # print("function cons")
             # call the cons function

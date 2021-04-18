@@ -89,17 +89,54 @@ def div(a, b):
 
 
 # BUILT IN FUNCTIONS
+def carFunc(a):
+    tmp = ""
+    # return the first element of the list
+    if a[1] == '(':
+        # return the first list
+        i = 2
+        while a[i] != ")" and i < len(a):
+            tmp += a[i]
+            i += 1
+        tmp = '(' + tmp + ')'
+    else:
+        i = 1
+        while a[i] != " " and i < len(a):
+            tmp += a[i]
+            i += 1
+
+    return tmp
+
+
+def cdrFunc(a):
+    tmp = ""
+    n = 0
+    # return everything but the first element of list
+    # skip over the first element
+    if a[1] == '(':
+        n = 2
+        i = 2
+        while a[i] != ')' and i < len(a):
+            n += 1
+            i += 1
+        n += 1
+    else:
+        n = 1
+        i = 1
+        while a[i] != " " and i < len(a):
+            n += 1
+            i += 1
+
+    return '(' + a[n + 1:]
+
+
 def consFunc(a, b):
     # concatenate a to the beginning of b
     # check for list
     if '(' in a:
-        a = a[2:len(a) - 1]
-    else:
-        a = a[1:]
+        a = a[1:len(a) - 1]
     if '(' in b:
-        b = b[2:len(b) - 1]
-    else:
-        b = b[1:]
+        b = b[1:len(b) - 1]
 
     return '(' + a + " " + b + ')'
 
