@@ -16,9 +16,9 @@ Logic:
 - [X] NOT
 
 functions:
-- [ ] car
-- [ ] cdr
-- [ ] cons
+- [X] car
+- [X] cdr
+- [X] cons
 - [X] sqrt
 - [X] pow
 - [ ] defun
