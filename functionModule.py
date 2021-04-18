@@ -69,7 +69,7 @@ def parseExpression(expStr, depth):
         else:
             tmp = ""
             # check if the following is defined as an atom
-            if expStr[i] == "'" and expStr[i + 1] == "(":
+            if expStr[i] == "'" and expStr[i + 1] == "(":  # IF '(abc...)
                 n = lookForTerminatingExpr(expStr[i + 1:])
                 end = i + n + 2
                 # print("found an atom. end:", end)
@@ -78,12 +78,15 @@ def parseExpression(expStr, depth):
                     tmp += expStr[i]
                     i += 1
                 expr.append(tmp)
+            elif expStr[i] == "'" and i < length:  # IF 'abc...
+                while expStr[i] != " ":
+                    tmp += expStr[i]
+                    i += 1
+                expr.append(tmp)
             # look to build the expression and push to the array
             elif expStr[i] != " " and i < length:
                 while expStr[i] != " " and expStr[i] != ")" and i < length:
-                    #print(i, len(expStr))
                     tmp += expStr[i]
-                    #print(tmp)
                     i += 1
                 # END OF WHILE
                 expr.append(tmp)
@@ -200,7 +203,11 @@ def evaluation(exprList, index):
         if exprList[index] == "cdr":  # CDR
             print("function cdr")
         if exprList[index] == "cons":  # CONS
-            print("function cons")
+            # print("function cons")
+            # call the cons function
+            result = opLibrary.consFunc(exprList[index + 1],
+                                        exprList[index + 2])
+
         if exprList[index] == "sqrt":  # SQRT
             # print("function sqrt")
             # call the square root function

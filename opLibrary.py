@@ -88,7 +88,22 @@ def div(a, b):
     return float(a) / float(b)
 
 
-# FUNCTIONS
+# BUILT IN FUNCTIONS
+def consFunc(a, b):
+    # concatenate a to the beginning of b
+    # check for list
+    if '(' in a:
+        a = a[2:len(a) - 1]
+    else:
+        a = a[1:]
+    if '(' in b:
+        b = b[2:len(b) - 1]
+    else:
+        b = b[1:]
+
+    return '(' + a + " " + b + ')'
+
+
 def exprSqrt(a):
     return math.sqrt(float(a))
 
