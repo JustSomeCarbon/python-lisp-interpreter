@@ -25,6 +25,6 @@ functions:
 - [ ] defun
 - [X] !set
 
-Functionality:
-Variable definition is ready.
-Variable referencing within more complex expressions is ready
+Functionality:  
+Variable definition is ready.  
+Variable referencing within more complex expressions is ready  
