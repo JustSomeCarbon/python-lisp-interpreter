@@ -16,6 +16,7 @@ Logic:
 - [X] NOT
 
 functions:
+- [X] if conditional
 - [X] car
 - [X] cdr
 - [X] cons
@@ -23,3 +24,7 @@ functions:
 - [X] pow
 - [ ] defun
 - [X] !set
+
+Functionality:
+Variable definition is ready.
+Variable referencing within more complex expressions is ready
