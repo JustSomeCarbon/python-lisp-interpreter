@@ -31,12 +31,12 @@ def notEqual(a, b):
 def logicAnd(a, b):
     # evaluate exressions a and b
     if not isinstance(a, bool):
-        if a.lower() == 'true':
+        if a.lower() == 't':
             a = True
         else:
             a = False
     if not isinstance(b, bool):
-        if b.lower() == 'true':
+        if b.lower() == 't':
             b = True
         else:
             b = False
@@ -47,12 +47,12 @@ def logicAnd(a, b):
 def logicOr(a, b):
     # evaluate exressions a and b
     if not isinstance(a, bool):
-        if a.lower() == 'true':
+        if a.lower() == 't':
             a = True
         else:
             a = False
     if not isinstance(b, bool):
-        if b.lower() == 'true':
+        if b.lower() == 't':
             b = True
         else:
             b = False
@@ -63,7 +63,7 @@ def logicOr(a, b):
 def logicNot(a):
     # evaluate expression a
     if not isinstance(a, bool):
-        if a.lower() == 'true':
+        if a.lower() == 't':
             a = True
         else:
             a = False
@@ -109,7 +109,6 @@ def carFunc(a):
 
 
 def cdrFunc(a):
-    tmp = ""
     n = 0
     # return everything but the first element of list
     # skip over the first element

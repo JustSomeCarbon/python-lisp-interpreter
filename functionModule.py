@@ -18,7 +18,7 @@ varDefs = []
 # GLOBAL OPERATIONS
 logicOps = ["<", ">", "=", "!=", "and", "or", "not"]
 arithOps = ["+", "-", "*", "/"]
-builtOps = ["car", "cdr", "cons", "sqrt", "pow", "defun", "!set"]
+builtOps = ["car", "cdr", "cons", "sqrt", "pow", "defun", "!set", "define"]
 
 
 # Takes in the string expression from the main function.
@@ -125,18 +125,30 @@ def lookForTerminatingExpr(expStr):
 # @return result of expression as a string
 def evaluation(exprList, index):
     # print("EVAL::", exprList)
-    result = 0
+    result = exprList[0]
 
     # CHECK FOR RECURSIVE DEPTH
     # CHECK FOR BOUNDS
-    if (index + 1) < len(exprList):
-        if isinstance(exprList[index + 1], list):
-            exprList[index + 1] = evaluation(exprList[index + 1], 0)
-    if (index + 2) < len(exprList):
-        if isinstance(exprList[index + 2], list):
-            exprList[index + 2] = evaluation(exprList[index + 2], 0)
+    if (exprList[index] == "if"):
+        # evaluate the condition
+        exprList[index + 1] = evaluation(exprList[index + 1], 0)
+        if exprList[index + 1]:
+            # print("eval true")
+            return evaluation(exprList[index+2], 0)
+        else:
+            # print("eval false")
+            return evaluation(exprList[index+3], 0)
+    else:
+        if (index + 1) < len(exprList):
+            if isinstance(exprList[index + 1], list):
+                exprList[index + 1] = evaluation(exprList[index + 1], 0)
+        if (index + 2) < len(exprList):
+            if isinstance(exprList[index + 2], list):
+                exprList[index + 2] = evaluation(exprList[index + 2], 0)
     # END OF CHECK
     # ARRAY INDEX UPDATED
+
+    # evaluate conditional
 
     # check the first expression given is a defined keyword
     if exprList[index] in logicOps:  # logic operations
@@ -228,6 +240,7 @@ def evaluation(exprList, index):
 
         if exprList[index] == "defun":
             print("function defun")
+
         if exprList[index] == "!set":  # SET
             # push result of expression to var names and var defs
             # return the resulting variable name
@@ -235,13 +248,12 @@ def evaluation(exprList, index):
             varNames.append(exprList[index + 1])
             result = exprList[index + 1]
 
-        if exprList[index] == "define":  # DOES NOT WORK FOR SOME REASON
+        if exprList[index] == "define":  # DEFINE
             # push result of expression to var names and var defs
             # return the resulting variable name
-            print("in define")
             varDefs.append(exprList[index + 2])
             varNames.append(exprList[index + 1])
-            result = exprList[index + 1]
+            result = exprList[index + 2]
 
     # check if the first expression is a user defined function keyword
     if exprList[index] in funcNames:
@@ -258,3 +270,30 @@ def evaluation(exprList, index):
 
 
 # END OF EVALUATION
+
+
+def swapExpression(exprList):
+    i = 0
+    for element in exprList:
+        # if element is a list
+        if isinstance(element, list):
+            # call the function recursively
+            swapExpression(element)
+        else:
+            # if the given element is a variable
+            if element in varNames:
+                # swap it for the variable
+                #print("swapping", element)
+                n = varNames.index(element)
+                #print(varDefs[n])
+                exprList[i] = varDefs[n]
+        i += 1
+    #print(exprList)
+    return exprList
+
+
+
+def checkForAtom(a):
+    # check if the first element is an atom
+
+    return False
