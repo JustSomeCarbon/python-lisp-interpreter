@@ -13,19 +13,27 @@ import math
 
 # LOGIC
 def gthan(a, b):
-    return int(a) > int(b)
+    if int(a) > int(b):
+        return "T"
+    return "F"
 
 
 def lthan(a, b):
-    return int(a) < int(b)
+    if int(a) < int(b):
+        return "T"
+    return "F"
 
 
 def equal(a, b):
-    return int(a) == int(b)
+    if int(a) == int(b):
+        return "T"
+    return "F"
 
 
 def notEqual(a, b):
-    return int(a) != int(b)
+    if int(a) != int(b):
+        return "T"
+    return "F"
 
 
 def logicAnd(a, b):
@@ -41,7 +49,9 @@ def logicAnd(a, b):
         else:
             b = False
 
-    return a and b
+    if a and b:
+        return "T"
+    return "F"
 
 
 def logicOr(a, b):
@@ -57,7 +67,9 @@ def logicOr(a, b):
         else:
             b = False
 
-    return a or b
+    if a or b:
+        return "T"
+    return "F"
 
 
 def logicNot(a):
@@ -67,8 +79,9 @@ def logicNot(a):
             a = True
         else:
             a = False
-
-    return not a
+    if not a:
+        return "T"
+    return "F"
 
 
 # ARITHMETIC
