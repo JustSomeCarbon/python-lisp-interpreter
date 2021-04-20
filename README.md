@@ -24,6 +24,7 @@ functions:
 - [X] pow
 - [ ] defun
 - [X] !set
+- [X] define
 
 Functionality:  
 Variable definition is ready.  
