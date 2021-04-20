@@ -132,7 +132,7 @@ def evaluation(exprList, index):
     if (exprList[index] == "if"):
         # evaluate the condition
         exprList[index + 1] = evaluation(exprList[index + 1], 0)
-        if exprList[index + 1]:
+        if exprList[index + 1] == "T":
             # print("eval true")
             return evaluation(exprList[index+2], 0)
         else:
