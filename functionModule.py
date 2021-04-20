@@ -134,10 +134,10 @@ def evaluation(exprList, index):
         exprList[index + 1] = evaluation(exprList[index + 1], 0)
         if exprList[index + 1] == "T":
             # print("eval true")
-            return evaluation(exprList[index+2], 0)
+            return evaluation(exprList[index + 2], 0)
         else:
             # print("eval false")
-            return evaluation(exprList[index+3], 0)
+            return evaluation(exprList[index + 3], 0)
     else:
         if (index + 1) < len(exprList):
             if isinstance(exprList[index + 1], list):
@@ -243,10 +243,16 @@ def evaluation(exprList, index):
 
         if exprList[index] == "!set":  # SET
             # push result of expression to var names and var defs
-            # return the resulting variable name
-            varDefs.append(exprList[index + 2])
-            varNames.append(exprList[index + 1])
-            result = exprList[index + 1]
+            # check if the variable already exists
+            if exprList[index + 1] in varNames:
+                # change the value of its definition
+                n = varNames.index(exprList[index + 1])
+                varDefs[n] = exprList[index + 2]
+            else:
+                # return the resulting variable name
+                varDefs.append(exprList[index + 2])
+                varNames.append(exprList[index + 1])
+            result = exprList[index + 2]
 
         if exprList[index] == "define":  # DEFINE
             # push result of expression to var names and var defs
@@ -290,7 +296,6 @@ def swapExpression(exprList):
         i += 1
     #print(exprList)
     return exprList
-
 
 
 def checkForAtom(a):
