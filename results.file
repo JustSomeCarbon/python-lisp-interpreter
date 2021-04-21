@@ -65,3 +65,10 @@ Welcome to the LISP interpreter!
 >>30
 >(quit)
 >>EOF
+Welcome to the LISP interpreter!
+>(cons 'hello 'world)
+>>(hello world)
+>(+ 3 3)
+>>6
+>(quit)
+>>EOF
