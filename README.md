@@ -1,7 +1,7 @@
 This is a simple LISP interpreter written in Python
 
 The interpreter was written as a required project for a class, and as such, was written in a smaller timeframe.
-I have posted this project as an archive for this project, so that I may recreate the project at a later date.
+I have posted this project as an archive, so that I may recreate the project at a later date.
 The following is the currently working functionality of the interpreter.  
 
 
