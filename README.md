@@ -1,5 +1,10 @@
 This is a simple LISP interpreter written in Python
 
+The interpreter was written as a required project for a class, and as such, was written in a smaller timeframe.
+I have posted this project as an archive for this project, so that I may recreate the project at a later date.
+The following is the currently working functionality of the interpreter.  
+
+
 Arithmetic:
 - [X] addition, +
 - [X] subtraction, -
@@ -29,3 +34,9 @@ functions:
 Functionality:  
 Variable definition is ready.  
 Variable referencing within more complex expressions is ready  
+
+TODO::  
+Rectreate the project:
+- [ ] re-write expression parser
+- [ ] restructure how expression evaluation is cunducted (separate function calls from definitions)
+- [ ] integrate function definitions within the interpreter
