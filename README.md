@@ -5,10 +5,6 @@ in this application. This interpreter is able to handle simple arithmetic (such 
 and division) Logical expressions (such as greater than, less than, greater than or equal to, less than or equal to, equal
 to, not equal to, and, or, and not), and a few simple functions (if conditionals, car, cdr, cons, sqrt, pow, !set, and define).
 
-The interpreter was written as a required project for a class, and as such, was written in a smaller timeframe.
-I have posted this project as an archive, so that I may recreate the project at a later date.
-The following is the currently working functionality of the interpreter.  
-
 
 Arithmetic:
 - [X] addition, +
